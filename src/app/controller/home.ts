@@ -1,7 +1,7 @@
 import { Context, inject, controller, get, provide } from 'midway';
 
 @provide()
-@controller('/')
+@controller('/api')
 export class HomeController {
 
   @inject()
@@ -10,5 +10,10 @@ export class HomeController {
   @get('/')
   async index() {
     this.ctx.body = `Welcome to midwayjs!`;
+  }
+
+  @get('/api')
+  async api() {
+    this.ctx.body = `hello! API`;
   }
 }
