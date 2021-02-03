@@ -9,6 +9,7 @@ see [midway docs][midway] for more detail.
 ### Development
 
 ```bash
+node 12.20.0
 $ npm i
 $ npm run dev
 $ open http://localhost:7001/

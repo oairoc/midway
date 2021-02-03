@@ -1,14 +1,18 @@
-import { Provide } from '@midwayjs/decorator';
-import { IUserOptions } from '../interface';
+import { Provide, Scope, ScopeEnum } from "@midwayjs/decorator";
+import { User } from "../interface";
 
 @Provide()
+@Scope(ScopeEnum.Singleton)
 export class UserService {
-  async getUser(options: IUserOptions) {
-    return {
-      uid: options.uid,
-      username: 'mockedName',
-      phone: '12345678901',
-      email: 'xxx.xxx@xxx.com',
-    };
-  }
+
+    private num: number = 1
+
+    async getUser(id: number): Promise<User> {
+        return {
+            id: id,
+            name: "lily",
+            age: this.num++
+        }
+    }
+
 }
