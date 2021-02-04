@@ -1,18 +1,16 @@
-import { Provide, Scope, ScopeEnum } from "@midwayjs/decorator";
-import { User } from "../interface";
+import { Provide } from "@midwayjs/decorator";
+import { InjectEntityModel } from "@midwayjs/orm";
+import { Repository } from 'typeorm';
+import { User } from "../entity/user";
 
 @Provide()
-@Scope(ScopeEnum.Singleton)
 export class UserService {
 
-    private num: number = 1
+    @InjectEntityModel(User)
+    userModel: Repository<User>;
 
-    async getUser(id: number): Promise<User> {
-        return {
-            id: id,
-            name: "lily",
-            age: this.num++
-        }
+    async getAll() {
+        return await this.userModel.find()
     }
 
 }
