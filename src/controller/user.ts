@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Provide } from "@midwayjs/decorator";
+import { ALL, Body, Controller, Get, Inject, Post, Provide } from "@midwayjs/decorator";
 import { UserService } from "../service/user";
 
 @Provide()
@@ -13,9 +13,14 @@ export class UserController {
         return this.userService.getAll()
     }
 
-    // @Get('/')
-    // async getUser(@Query() id: number): Promise<User> {
-    //     return this.userService.getUser(id)
-    // }
+    @Post('/add')
+    async add(@Body(ALL) body: any) {
+        return this.userService.addUser(body)
+    }
+
+    @Post('/del')
+    async del(@Body() name: string) {
+        return this.userService.delUser(name)
+    }
 
 }

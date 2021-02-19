@@ -13,4 +13,15 @@ export class UserService {
         return await this.userModel.find()
     }
 
+    async addUser(body) {
+        await this.userModel.save(body)
+        return await this.userModel.find()
+    }
+
+    async delUser(name) {
+        const one = await this.userModel.find({ name })
+        await this.userModel.remove(one);
+        return await this.userModel.find()
+    }
+
 }

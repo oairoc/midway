@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import { mysql_conf } from "./db";
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
 
@@ -11,9 +12,13 @@ export default (appInfo: EggAppInfo) => {
   // add your config here
   config.middleware = [];
 
-  config.orm = {
-
+  config.security = {
+    csrf: {
+      enable: false
+    }
   }
+
+  config.orm = mysql_conf
 
   return config;
 };
